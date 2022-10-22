@@ -1,34 +1,17 @@
+import { Form } from "./Form";
+import { TextList } from "./TextList";
+import { TextContext } from "./helpers/text-context";
 import { useState } from "react";
-import "./App.css";
 
-function App() {
-  const [text, setText] = useState<string>("");
+export function App() {
   const [textArr, setTextArr] = useState<string[]>([]);
 
   return (
     <div className="App">
-      <input
-        value={text}
-        type="text"
-        onChange={(event) => setText(event.target.value)}
-        placeholder="Type something"
-      />
-      <br />
-      <button
-        onClick={() => {
-          setTextArr([...textArr, text]);
-          setText("");
-        }}
-      >
-        Send
-      </button>
-      <br />
-      <br />
-      {textArr.map((item) => (
-        <div>{item}</div>
-      ))}
+      <TextContext.Provider value={{ textArr, setTextArr }}>
+        <Form />
+        <TextList />
+      </TextContext.Provider>
     </div>
   );
 }
-
-export default App;
