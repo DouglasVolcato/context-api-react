@@ -1,10 +1,10 @@
-import { useState, useContext } from "react";
-import { TextContext } from "./helpers/text-context";
+import { useState } from "react";
 import "./App.css";
+import { useTexts } from "./hooks/texts";
 
 export function Form() {
   const [text, setText] = useState<string>("");
-  const { textArr, setTextArr } = useContext(TextContext);
+  const { createText } = useTexts();
 
   return (
     <div className="Form">
@@ -17,7 +17,7 @@ export function Form() {
       <br />
       <button
         onClick={() => {
-          setTextArr([...textArr, text]);
+          createText(text);
           setText("");
         }}
       >

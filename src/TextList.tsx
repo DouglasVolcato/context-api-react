@@ -1,14 +1,13 @@
-import { useContext } from "react";
-import { TextContext } from "./helpers/text-context";
+import { useTexts } from "./hooks/texts";
 
 export function TextList() {
-  const { textArr } = useContext(TextContext);
+  const { getTexts } = useTexts();
 
   return (
     <div className="TextList">
       <h2> Messages:</h2>
-      {textArr.map((item: string) => (
-        <div>{item}</div>
+      {getTexts().map((item: string, key: number) => (
+        <div key={key}>{item}</div>
       ))}
     </div>
   );
